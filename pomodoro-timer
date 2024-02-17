@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Simple pomodoro timer.
+
+set -euo pipefail
+
+TIME_WORK=20m
+TIME_BREAK=5m
+
+function alarm() {
+    echo "${1}"
+    notify-send "${1}"
+
+    for run in {1..3}; do
+        paplay alarm.mp3
+    done
+}
+
+while true; do
+    alarm 'Starting Work'
+    sleep "${TIME_WORK}"
+
+    alarm 'Starting Break'
+    sleep "${TIME_BREAK}"
+done
+
