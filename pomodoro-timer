@@ -7,8 +7,10 @@ TIME_WORK=20m
 TIME_BREAK=5m
 
 function alarm() {
-    echo "${1}"
-    notify-send "${1}"
+    local -r time="$(date '+%H:%M')"
+    local -r message="${time} - ${1}"
+    echo "${message}"
+    notify-send "${message}"
 
     for run in {1..3}; do
         paplay alarm.mp3
